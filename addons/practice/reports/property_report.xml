@@ -1,0 +1,106 @@
+<odoo>
+    <record id="property_report" model="ir.actions.report">
+        <field name="name">Property Report</field>
+        <field name="model">property</field>
+        <!-- มีแบบ qweb-pdf กับ qweb-html -->
+        <field name="report_type">qweb-pdf</field>
+        <field name="binding_model_id" ref="model_property" />
+        <field name="binding_type">report</field>
+        <!-- เอาชื่อมาแสดง  -->
+        <field name="report_name">practice.property_report_template</field>
+    </record>
+    
+    <template id="property_report_template" name="template_name">
+        <!-- สร้าง container ของ report  -->
+        <t t-call="web.html_container">
+                <!-- set layout report -->
+            <t t-call="web.external_layout">
+
+                <!-- ให้ลูปข้อมูลจาก docs (property อันนั้น) -->
+                <t t-foreach="docs" t-as="rec">
+                    <h1 style="font-family: 'Roboto';">Property Report</h1>
+
+                    <!-- เขียน tag style แทรกได้ -->
+                    <style>
+                        table{
+                            width:100%;
+                            border:1 px solid #b3adad;
+                            border-collapse:collapse;
+                            padding: 5px;
+
+                        }
+                        table th {
+                            border: 1px solid #b3adad;
+                            padding: 5px;
+                            background: #f0f0f0;
+                            color: #313030;
+
+                        }
+
+                        table td {
+                            border: 1px solid #b3adad;
+                            text-align: center;
+                            padding: 5px;
+                            background: #ffffff;
+                            color: #313030;
+                        }
+
+                    </style>
+                    <table>
+
+                        <thead>
+                            <th colspan="4">General Information</th>
+                        </thead>
+
+                        <tbody>
+                            <td>Name</td>
+                            <!-- เอาข้อมูลมาแสดง -->
+                            <td><t t-esc="rec.name"/></td>
+                            <td>postcode</td>
+                            <td><t t-esc="rec.postcode"/></td>
+                        </tbody>
+
+                        <thead>
+                            <th colspan="4">Additional Information</th>
+                        </thead>
+
+                        <tbody>
+                            <td>Owner</td>
+                            <td><t t-esc="rec.owner_id.name"/></td>
+                            <td>Phone</td>
+                            <td><t t-esc="rec.owner_phone"/></td>
+                        </tbody>
+                        
+                    </table>
+
+                    <br />
+
+                    <table>
+
+                        <thead>
+                            <th>Description</th>
+                            <th>Area(m2)</th>
+                        </thead>
+
+                        <tbody>
+                        <!-- foreach เหมือนลูปข้อมูล t-as เหมือย as ปกติ -->
+                            <t t-foreach="rec.line_ids" t-as="line">
+                                <tr>
+                                    <td>
+                                        <!-- ทำได้สองแบบ ใช้ span แทนก็ได้ -->
+                                        <span t-field="line.description"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="line.area"/>
+                                    </td>
+                                </tr>
+                                
+                            </t>
+                        </tbody>
+                    </table>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

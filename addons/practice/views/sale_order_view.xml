@@ -1,0 +1,28 @@
+<!-- field ที่แทรกตัวเข้าไปในหน้าฟอร์ม ของ sale order -->
+<odoo>
+    <record id="view_order_form_inherit" model="ir.ui.view">
+        <field name="name">view order form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <!-- ได้เหมือนกัน -->
+            <!-- <field name="partner_id" position="after">
+                <field name="property_id"></field>
+            </field> -->
+
+            <!-- ใช้ debug โหมดในการหาชื่อ field แล้วก็ต่อท้ายในส่วนนั้น  -->
+            <xpath expr="//field[@name='partner_id']" position="after">
+            <!-- เพิ่ม field ที่ชื่อว่า property_id เข้าไป ซึ่งเป็น many to one  -->
+                <field name="property_id"></field>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>
+
+
+<!-- Inheritance
+
+1. python Inheritance.
+2. Model Inheritance.
+3. View Inheritance. -->
