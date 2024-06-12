@@ -14,7 +14,7 @@ services:
     ports:
       - "5432:5432"
 
-  odoo17:
+  odoo16:
     image: odoo:16
     user: root  # Consider using a non-root user for security
     depends_on:
