@@ -124,21 +124,21 @@
 
 
     <menuitem
-        id="hospital_root"
+        id="menu_hospital_root"
         name="hospital"
         />
 
     <menuitem
-        id="hospital_patient_root"
+        id="menu_patient_root"
         name="Patients"
-        parent="hospital_root"
+        parent="menu_hospital_root"
         />
 
     <menuitem
-        id="hospital_patient"
+        id="menu_patient"
         name="Patients"
         action="action_hospital_patient"
-        parent="hospital_patient_root"
+        parent="menu_patient_root"
         />
 
 </odoo>

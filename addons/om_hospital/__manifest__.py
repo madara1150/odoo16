@@ -12,7 +12,8 @@
     'depends': ['sale', 'mail'],
     'installable': True,
     'data': [
-       'views/patient.xml',
+       'views/patient_view.xml',
+       'views/kids_view.xml',
        'security/ir.model.access.csv',
        'views/sale.xml',
        'data/data.xml',
