@@ -1,0 +1,144 @@
+<odoo>
+
+    <record id="patient_tree" model="ir.ui.view">
+        <field name="name">.hospital.patient.tree</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="name"></field>
+                <field name="responsible_id"></field>
+                <field name="gender"></field>
+                <field name="age"></field>
+                <field name="note"></field>
+                <field name="state"></field>
+            </tree>
+        </field>
+    </record>
+
+    <record id="patient_form" model="ir.ui.view">
+        <field name="name">hospital.patient.form</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <header>
+                    <button string="Confirm" id="button_confirm" name="action_confirm" type="object" states="draft" class="btn-primary"/>
+                    <button string="Mark as Done" id="button_done" name="action_done" type="object" states="confirm" class="btn-primary"/>
+                    <button string="Set To Draft" id="button_draft" name="action_draft" type="object" states="cancel" class="btn-primary"/>
+                    <button string="Cancel" id="button_cancel" name="action_cancel" type="object" states="draft,done,confirm" />
+                    <field name="state" widget="statusbar" statusbar_visible="draft,done,confirm"></field>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="reference" readonly="1"></field>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"></field>
+                            <field name="responsible_id"></field>
+                            <field name="age"></field>
+                        </group>
+                        <group>
+                            <field name="gender"></field>
+                            <field name="note"></field>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="patient_vearch" model="ir.ui.view">
+        <field name="name">hospital.patient.search</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <search string="Patient">
+                <field name="name"></field>
+                <field name="note"></field>
+                <separator />
+                <filter name="Male" string="Male" domain="[('gender', '=', 'male')]"/>
+                <filter name="Female" string="Female" domain="[('gender', '=', 'female')]"/>
+                <filter name="Other" string="Other" domain="[('gender', '=', 'other')]"/>
+                <group string="Patient" expand="1">
+                    <filter name="gender" string="Gender" context="{'group_by': 'gender'}" />
+                    <filter name="patient_name" string="Patient Name" context="{'group_by': 'name'}" />
+                    <filter name="responsible_id" string="Responsible" context="{'group_by': 'responsible_id'}" />
+                </group>
+                
+            </search>
+        </field>
+    </record>
+
+    <record id="patient_view_kanban" model="ir.ui.view">
+        <field name="name">hospital.patient.view.kanban</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="id"></field>
+                <field name="name"></field>
+                <field name="gender"></field>
+                <field name="age"></field>
+                <field name="note"></field>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click">
+                            <div class="oe_kanban_details">
+                                <ul>
+                                    <li>
+                                        Name : <field name="name"></field>
+                                    </li>
+                                    <li>
+                                        Age : <field name="age"></field>
+                                    </li>
+                                    <li>
+                                        Gender : <field name="gender"></field>
+                                    </li>
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="action_hospital_patient" model="ir.actions.act_window">
+        <field name="name">Patients</field>
+        <field name="res_model">hospital.patient</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <!-- default filter เปลี่ยนเป็น 1 ชื่อ search_defaul_ชื่อของ filter group ข้างบน -->
+        <field name="context">{'search_default_gender': 0, 'search_defailt_patient_name': 0, 'search_default_responsible_id':0, 'search_default_Male': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                create you first patient
+            </p>
+        </field>
+    </record>
+
+
+    <menuitem
+        id="hospital_root"
+        name="hospital"
+        />
+
+    <menuitem
+        id="hospital_patient_root"
+        name="Patients"
+        parent="hospital_root"
+        />
+
+    <menuitem
+        id="hospital_patient"
+        name="Patients"
+        action="action_hospital_patient"
+        parent="hospital_patient_root"
+        />
+
+</odoo>
