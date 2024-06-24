@@ -8,5 +8,13 @@
             <field name="padding">5</field>
             <field name="company_id" eval="False"></field>
         </record>
+
+        <record id="seq_hospital_appointment" model="ir.sequence">
+            <field name="name">Patient Sequence</field>
+            <field name="code">hospital.appointment</field>
+            <field name="prefix">OT</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"></field>
+        </record>
     </data>
 </odoo>
