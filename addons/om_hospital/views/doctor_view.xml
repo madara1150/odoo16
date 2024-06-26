@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo>
+<odoo> 
+
+    <record id="action_open_appointments" model="ir.actions.act_window">
+        <field name="name">Appointment</field>
+        <field name="res_model">hospital.appointment</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('doctor_id', '=', active_id)]</field>
+        <field name="context">{'default_doctor_id': active_id}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                create you first appointment !
+            </p>
+        </field>
+    </record>
 
     <record id="view_doctor_kanban" model="ir.ui.view">
         <field name="name">hospital.doctor.kanban</field>
@@ -53,6 +66,15 @@
         <field name="arch" type="xml">
             <form string="">
                 <sheet>
+                    <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}" />
+                    <div class="oe_button_box" name="button_box">
+                        <button name="%(om_hospital.action_open_appointments)d" type="action" class="oe_stat_button" icon="fa-calendar">
+                            <div class="o_stat_info">
+                                <field name="appointment_count" class="o_stat_value"></field>
+                                <span class="o_stat_text">Appointments</span>
+                            </div>
+                        </button>
+                    </div>
                 <field name="image" widget="image" class="oe_avatar"></field>
                     <group>
                         <group>
@@ -62,6 +84,7 @@
                         <group>
                             <field name="gender"></field>
                             <field name="note"></field>
+                            <field name="active" invisible="1"></field>
                         </group>
                     </group>
                 </sheet>
@@ -85,9 +108,12 @@
                 <filter name="Male" string="Male" domain="[('gender', '=', 'male')]"/>
                 <filter name="Female" string="Female" domain="[('gender', '=', 'female')]"/>
                 <filter name="Other" string="Other" domain="[('gender', '=', 'other')]"/>
+                <separator />
+                <filter name="inactive" string="Archive" domain="[('active', '=', False)]" />
                 <group string="Patient" expand="1">
                     <filter name="gender" string="Gender" context="{'group_by': 'gender'}" />
                 </group>
+
                 
             </search>
         </field>

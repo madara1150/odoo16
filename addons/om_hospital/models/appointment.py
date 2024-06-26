@@ -1,4 +1,5 @@
 from odoo import api, fields, models, tools, _
+from odoo.exceptions import ValidationError
 
 class HospitalAppointment(models.Model):
     _name = "hospital.appointment"
@@ -57,6 +58,20 @@ class HospitalAppointment(models.Model):
                 self.gender = self.patient_id.gender
         else:
             self.gender = ''
+    
+    def unlink(self):
+        if self.state == 'done':
+            raise ValidationError("You Cannot Delete %s as it is in Done state" % self.name)
+        return super(HospitalAppointment,self).unlink()
+
+
+    def action_url(self):
+        return{
+            'type': 'ir.actions.act_url',
+            'target': 'new',
+            'url': 'https://www.google.%s' %self.prescription,
+        }
+
 
 class AppointmentPrescriptionLines(models.Model):
     _name = "appointment.prescription.lines"
@@ -65,3 +80,6 @@ class AppointmentPrescriptionLines(models.Model):
     name = fields.Char(string="Medicine")
     qty = fields.Integer(string="Quantity")
     appointment_id = fields.Many2one('hospital.appointment', string="Appointment")
+
+
+    

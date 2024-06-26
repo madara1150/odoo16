@@ -1,4 +1,5 @@
 from odoo import api, fields, models, tools, _
+from odoo.exceptions import ValidationError
 
 class HospitalPatient(models.Model):
     _name = "hospital.patient"
@@ -26,6 +27,9 @@ class HospitalPatient(models.Model):
     image = fields.Binary(string="Patient Image")
     appointment_ids = fields.One2many('hospital.appointment', 'patient_id', string="Appointments")
 
+    _sql_constraints = [
+        ('unique_name', 'unique("name")', 'This name is exist!')
+    ]
 
     def _compute_appointment_count(self):
         for rec in self:
@@ -63,3 +67,35 @@ class HospitalPatient(models.Model):
         res['gender'] = 'female'
         res['age'] = 18
         return res
+    
+    @api.constrains("name")
+    def check_name(self):
+        print(self)
+        for rec in self:
+            patients = self.env['hospital.patient'].search([('name', '=', rec.name), ('id', '!=', rec.id)])
+            if patients:
+                raise ValidationError("Name %s Already Exists" % rec.name)
+    
+    @api.constrains('age')
+    def check_name(self):
+        for rec in self:
+            if rec.age == 0:
+                raise ValidationError("Age Cannot Be Zero ..!")
+
+    def name_get(self):
+        result = []
+        for rec in self:
+            name = "[" + rec.reference + "] " + rec.name
+            result.append((rec.id, name))
+        return result
+
+    def action_open_appointments(self):
+        {
+            'type': 'ir.actions.act_window',
+            'name': 'Appointments',
+            'res_model': 'hospital.appointment',
+            'domain': [('patient_id', '=', self.id)],
+            'context': [('default_patient_id', '=', self.id)],
+            'view_mode': 'tree,form',
+            'target': 'current',
+        }

@@ -9,7 +9,7 @@
     'summary': 'Hostpital Management Software',
     'description': """Hostpital Management Software""",
     'website': 'https://www.odoo.com',
-    'depends': ['sale', 'mail'],
+    'depends': ['sale', 'mail', 'report_xlsx'],
     'installable': True,
     'data': [
        'security/ir.model.access.csv',
@@ -22,6 +22,10 @@
        'views/appointment_view.xml',
        'views/patient_gender_view.xml',
        'views/sale.xml',
+       'views/partner.xml',
+       'report/report.xml',
+       'report/patient_card.xml',
+       'report/appointment_details.xml'
     ],
     'license': 'LGPL-3',
     'application': True,

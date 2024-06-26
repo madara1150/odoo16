@@ -1,5 +1,13 @@
 <odoo>
 
+    <record id="action_confirm_appointment" model="ir.actions.server">
+        <field name="name">Confirm Appointment</field>
+        <field name="model_id" ref="model_hospital_appointment"/>
+        <field name="binding_model_id" ref="model_hospital_appointment"/>
+        <field name="state">code</field>
+        <field name="code">records.action_confirm()</field>
+    </record>
+
     <record id="view_appointment_tree" model="ir.ui.view">
         <field name="name">.hospital.appointment.tree</field>
         <field name="model">hospital.appointment</field>
@@ -28,7 +36,7 @@
                 <header>
                     <button string="Confirm" id="button_confirm" name="action_confirm" type="object" states="draft" class="btn-primary" confirm="Are you sure that you need to confirm ?"/>
                     <button string="Mark as Done" id="button_done" name="action_done" type="object" states="confirm" class="btn-primary"/>
-                    <button string="Set To Draft" id="button_draft" name="action_draft" type="object" states="cancel" class="btn-primary"/>
+                    <button string="Open URL" name="action_url" type="object" class="btn-primary"/>
                     <button string="Cancel" id="button_cancel" name="action_cancel" type="object" states="draft,done,confirm" confirm="Are you sure that you need ti cancel ? " />
                     <field name="state" widget="statusbar" statusbar_visible="draft,done,confirm"></field>
                 </header>
@@ -100,7 +108,10 @@
                 <group string="Patient" expand="1">
                     <filter name="patient_id" string="Patient" context="{'group_by': 'patient_id'}" />
                 </group>
-                
+                <searchpanel>
+                    <field name="gender" string="Gender" icon="fa-exchange"></field>
+                    <field name="state" string="Status" select="multi" enable_counters="1"></field>
+                </searchpanel>
             </search>
         </field>
     </record>
@@ -141,12 +152,12 @@
         sequence="20"
         />
 
-        <menuitem
+        <!-- <menuitem
         id="menu_search_appointment"
         name="Search Appointment"
         action="action_search_appointment"
         parent="menu_appointment_root"
         sequence="30"
-        />
+        /> -->
 
 </odoo>
