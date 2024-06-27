@@ -17,6 +17,7 @@ class HospitalAppointment(models.Model):
         ], string="Status", default="draft", tracking=True)
     
     patient_id = fields.Many2one('hospital.patient', string="Patient", required=True)
+    patient_name_id = fields.Many2one('hospital.patient', string="Patient Name", required=True)
     age = fields.Integer(string='Age', related='patient_id.age' ,tracking=True)
     doctor_id = fields.Many2one('hospital.doctor', string="Doctor", required=True)
     gender = fields.Selection([

@@ -9,7 +9,7 @@
     'summary': 'Hostpital Management Software',
     'description': """Hostpital Management Software""",
     'website': 'https://www.odoo.com',
-    'depends': ['sale', 'mail', 'report_xlsx'],
+    'depends': ['sale', 'mail', 'report_xlsx', 'product'],
     'installable': True,
     'data': [
        'security/ir.model.access.csv',

@@ -48,12 +48,13 @@
                     </div>
                     <group>
                         <group>
-                            <field name="patient_id"></field>
+                            <field name="patient_id" options="{'no_open':True,'no_create_edit': True}"></field>
+                            <field name="patient_name_id" context="{'hide_code': True}"></field>
                             <field name="gender" readonly="1" force_save="1"></field>
                             <field name="age"></field>
                         </group>
                         <group>
-                            <field name="doctor_id"></field>
+                            <field name="doctor_id" options="{'no_create': True}"></field>
                             <field name="date_appointment"></field>
                             <field name="date_checkup"></field>
                             <field name="note"></field>
