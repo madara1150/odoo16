@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <odoo>
-
+<!-- filter หน้า by type ใน reporting  -->
     <record id="view_holidays_status_filter" model="ir.ui.view">
         <field name="name">hr.leave.type.filter</field>
         <field name="model">hr.leave.type</field>
@@ -13,7 +13,7 @@
             </search>
         </field>
     </record>
-
+<!-- หน้า time of type ใน Configuration -->
     <record id="edit_holiday_status_form" model="ir.ui.view">
         <field name="name">hr.leave.type.form</field>
         <field name="model">hr.leave.type</field>
@@ -90,7 +90,7 @@
             </form>
         </field>
     </record>
-
+<!-- หน้า time of type ใน Configuration -->
     <record id="hr_holiday_status_view_kanban" model="ir.ui.view">
         <field name="name">hr.leave.type.kanban</field>
         <field name="model">hr.leave.type</field>
@@ -112,7 +112,7 @@
             </kanban>
         </field>
     </record>
-
+<!-- หน้า time of type ใน Configuration -->
     <record id="view_holiday_status_normal_tree" model="ir.ui.view">
         <field name="name">hr.leave.type.normal.tree</field>
         <field name="model">hr.leave.type</field>
@@ -128,7 +128,7 @@
             </tree>
         </field>
     </record>
-
+<!-- page time of type ใน Configuration -->
     <record id="open_view_holiday_status" model="ir.actions.act_window">
         <field name="name">Time Off Types</field>
         <field name="type">ir.actions.act_window</field>

@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <odoo>
+<!-- form stree day  -->
     <record id="hr_leave_stress_day_view_form" model="ir.ui.view">
         <field name="model">hr.leave.stress.day</field>
         <field name="arch" type="xml">
@@ -25,6 +26,7 @@
         </field>
     </record>
 
+<!-- tree stree day -->
     <record id="hr_leave_stress_day_view_list" model="ir.ui.view">
         <field name="model">hr.leave.stress.day</field>
         <field name="arch" type="xml">
@@ -40,7 +42,7 @@
             </tree>
         </field>
     </record>
-
+<!-- search stree day  -->
     <record id="hr_leave_stress_day_view_search" model="ir.ui.view">
         <field name="model">hr.leave.stress.day</field>
         <field name="arch" type="xml">
@@ -54,7 +56,7 @@
             </search>
         </field>
     </record>
-
+<!-- page Stress Days ใน Configuration -->
     <record id="hr_leave_stress_day_action" model="ir.actions.act_window">
         <field name="name">Stress Days</field>
         <field name="res_model">hr.leave.stress.day</field>

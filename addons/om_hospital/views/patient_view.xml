@@ -205,6 +205,7 @@
         id="menu_reporting"
         name="Reporting"
         parent="menu_hospital_root"
+        groups="om_hospital.group_hospital_doctors"
         sequence="40"/>
     
     <menuitem

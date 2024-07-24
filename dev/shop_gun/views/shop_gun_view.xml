@@ -1,0 +1,47 @@
+<odoo>
+    <record id="gun_view_tree" model="ir.ui.view">
+        <field name="name">shop tree</field>
+        <field name="model">shop.gun</field>
+        <field name="arch" type="xml">
+
+            <tree>
+                <field name="shop_name"/>
+                <field name="owner_id"></field>
+                <field name="address_owner"></field>
+            </tree>
+        </field>
+    </record>
+
+    <record id="shop_gun_view_form" model="ir.ui.view">
+        <field name="name">shop.gun.view.form</field>
+        <field name="model">shop.gun</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <field name="shop_name"/>
+                        <field name="owner_id"></field>
+                        <field name="onwer_name"></field>
+                        <field name="address_owner"></field>
+                        <field name="address"></field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    
+
+    <record id="shop_gun_action" model="ir.actions.act_window">
+        <field name="name">gun shop</field>
+        <field name="res_model">shop.gun</field>
+        <field name="view_mode">tree,form,kanban,activity</field>
+    </record>
+    
+    <menuitem 
+        id="gun_menu_item"
+        name="shops"
+        parent="shop_menu"
+        action="shop_gun_action"
+    />
+</odoo>

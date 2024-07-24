@@ -192,7 +192,7 @@
             </form>
         </field>
     </record>
-
+<!-- page Accrual Plans ใน Configuration -->
     <record id="open_view_accrual_plans" model="ir.actions.act_window">
         <field name="name">Accrual Plans</field>
         <field name="type">ir.actions.act_window</field>

@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <odoo>
-
+<!-- filter หน้า Allocation -->
     <record id="view_hr_leave_allocation_filter" model="ir.ui.view">
         <field name="name">hr.holidays.filter_allocations</field>
         <field name="model">hr.leave.allocation</field>
@@ -428,7 +428,7 @@
             </activity>
         </field>
     </record>
-
+<!-- page My Allocations -->
     <record id="hr_leave_allocation_action_my" model="ir.actions.act_window">
         <field name="name">My Allocations</field>
         <field name="res_model">hr.leave.allocation</field>
@@ -474,7 +474,7 @@
             </p>
         </field>
     </record>
-
+<!-- Page Allocations ใน Approvals -->
     <record id="hr_leave_allocation_action_approve_department" model="ir.actions.act_window">
         <field name="name">Allocations</field>
         <field name="res_model">hr.leave.allocation</field>

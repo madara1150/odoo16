@@ -27,4 +27,5 @@
         'web.report_assets_common': ['practice/static/src/css/font.css']
     },
     'application': True,
+    'license': 'LGPL-3',
 }

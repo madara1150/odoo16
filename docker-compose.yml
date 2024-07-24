@@ -33,6 +33,7 @@ services:
       #- /etc/localtime:/etc/localtime:ro
       # - ./entrypoint.sh:/entrypoint.sh   # if you want to install additional Python packages, uncomment this line!
       - ./addons:/mnt/extra-addons
+      - ./dev:/mnt/extra2-addons
       - ./etc:/etc/odoo
     restart: always             # run as a service
 
