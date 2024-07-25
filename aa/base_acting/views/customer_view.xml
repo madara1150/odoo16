@@ -1,0 +1,27 @@
+<odoo>
+    <record id="customer_view_tree" model="ir.ui.view">
+        <field name="name">customer tree</field>
+        <field name="model">customer</field>
+        <field name="arch" type="xml">
+
+            <tree>
+                <field name="name"/>
+                <field name="phone"></field>
+                <field name="address"></field>
+            </tree>
+        </field>
+    </record>
+
+    <record id="customer_action" model="ir.actions.act_window">
+        <field name="name">customer</field>
+        <field name="res_model">customer</field>
+        <field name="view_mode">tree,form,kanban,activity</field>
+    </record>
+    
+    <menuitem 
+        id="customer_menu_item"
+        name="costomers"
+        parent="costomer_menu"
+        action="customer_action"
+    />
+</odoo>

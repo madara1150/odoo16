@@ -1,5 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_shop_gun,access_shop_gun,model_shop_gun,,1,1,1,1
-access_customer,access_customer,model_customer,,1,1,1,1
-access_tag,access_tag,model_tag,,1,1,1,1
-

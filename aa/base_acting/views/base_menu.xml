@@ -1,0 +1,25 @@
+<odoo>
+    <menuitem 
+        id="acting_root_menu"
+        name="Acting"
+        web_icon="practice,static/description/icon.png"
+    />
+    <menuitem 
+        id="definition_menu"
+        name="definition"
+        parent="acting_root_menu"
+    />
+
+    <!-- <menuitem 
+        id="costomer_menu"
+        name="customers"
+        parent="shop_gun_root_menu"
+    /> -->
+
+    <!-- กำหนด group เข้าถึงเมนูนั้นได้
+    <menuitem 
+        id="configration_menu"
+        name="Configration"
+        parent="shop_gun_root_menu"
+    /> -->
+</odoo>

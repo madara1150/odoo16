@@ -34,6 +34,7 @@ services:
       # - ./entrypoint.sh:/entrypoint.sh   # if you want to install additional Python packages, uncomment this line!
       - ./addons:/mnt/extra-addons
       - ./a:/mnt/extra2-addons
+      - ./aa:/mnt/extra3-addons
       - ./etc:/etc/odoo
     restart: always             # run as a service
 

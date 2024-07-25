@@ -1,0 +1,45 @@
+<odoo>
+    <record id="definition_view_tree" model="ir.ui.view">
+        <field name="name">definition tree</field>
+        <field name="model">acting.definition</field>
+        <field name="arch" type="xml">
+
+            <tree>
+                <field name="name"/>
+                <field name="model_id"></field>
+                <field name="model"></field>
+            </tree>
+        </field>
+    </record>
+
+    <record id="definition_view_form" model="ir.ui.view">
+        <field name="name">acting.definition.view.form</field>
+        <field name="model">acting.definition</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="model_id"></field>
+                        <field name="model"></field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    
+
+    <record id="acting_definition_action" model="ir.actions.act_window">
+        <field name="name">acting definition</field>
+        <field name="res_model">acting.definition</field>
+        <field name="view_mode">tree,form,kanban,activity</field>
+    </record>
+    
+    <menuitem 
+        id="definition_menu_item"
+        name="definition"
+        parent="definition_menu"
+        action="acting_definition_action"
+    />
+</odoo>
